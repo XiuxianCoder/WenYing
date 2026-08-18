@@ -99,7 +99,6 @@ flowchart LR
 - The React renderer never accesses Node.js, the filesystem, or Python directly.
 - Electron owns native windows, file dialogs, paths, clipboard access, and application lifecycle.
 - `wenying_bridge.py` communicates with Electron over JSON Lines and reuses the stable modules under `wenying/`.
-- The previous Tkinter client remains available through `run_wenying_legacy.bat` during migration.
 
 ## Requirements
 
@@ -155,8 +154,6 @@ The batch file starts the new Electron desktop client. For development, run:
 ```powershell
 npm run dev
 ```
-
-To temporarily use the previous Tkinter interface, run `run_wenying_legacy.bat`.
 
 ## Model configuration
 
@@ -233,11 +230,8 @@ WenYing/
 ├─ package.json              # Electron/React dependencies and build scripts
 ├─ wenying_bridge.py         # Persistent Electron-to-Python engine
 ├─ run_wenying.bat           # New Electron launcher
-├─ run_wenying_legacy.bat    # Previous Tkinter fallback launcher
-├─ app.py                    # Previous client entry and single-instance guard
 ├─ requirements.txt          # Python dependencies
 ├─ wenying/
-│  ├─ app_window.py          # Previous Tkinter interface
 │  ├─ docx_parser.py         # Word parser
 │  ├─ research_writer.py     # Web research and AI writing
 │  ├─ learning_v2.py         # Template learning and original design
@@ -251,7 +245,7 @@ WenYing/
 ## Development check
 
 ```powershell
-python -m compileall -q app.py wenying_bridge.py wenying
+python -m compileall -q wenying_bridge.py wenying
 npm run typecheck
 npm run build:web
 ```

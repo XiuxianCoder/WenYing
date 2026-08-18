@@ -117,7 +117,6 @@ flowchart LR
 - React 渲染进程不直接访问 Node.js、文件系统或 Python。
 - Electron 主进程统一处理原生窗口、文件对话框、路径与剪贴板。
 - `wenying_bridge.py` 使用 JSON Lines 与 Electron 通信，并复用 `wenying/` 下的稳定功能模块。
-- 原有 Tkinter 版仍可通过 `run_wenying_legacy.bat` 启动，便于迁移期间回退验证。
 
 ## 环境要求
 
@@ -173,8 +172,6 @@ run_wenying.bat
 ```powershell
 npm run dev
 ```
-
-如需临时回到旧版 Tkinter 界面，可双击 `run_wenying_legacy.bat`。
 
 ## 配置模型
 
@@ -253,11 +250,8 @@ WenYing/
 ├─ package.json              # Electron/React 依赖与构建脚本
 ├─ wenying_bridge.py         # Electron 与 Python 的常驻通信引擎
 ├─ run_wenying.bat           # 新版 Electron 启动脚本
-├─ run_wenying_legacy.bat    # 旧版 Tkinter 备用启动脚本
-├─ app.py                    # 旧版入口与单实例保护
 ├─ requirements.txt          # Python 依赖
 ├─ wenying/
-│  ├─ app_window.py          # 旧版 Tkinter 界面
 │  ├─ docx_parser.py         # Word 解析
 │  ├─ research_writer.py     # 联网检索与 AI 写作
 │  ├─ learning_v2.py         # 模板学习与原创排版
@@ -271,7 +265,7 @@ WenYing/
 ## 开发检查
 
 ```powershell
-python -m compileall -q app.py wenying_bridge.py wenying
+python -m compileall -q wenying_bridge.py wenying
 npm run typecheck
 npm run build:web
 ```
@@ -296,7 +290,7 @@ git init
 git branch -M main
 git add .gitignore README.md README_EN.md
 git add package.json package-lock.json index.html tsconfig.json vite.config.ts
-git add requirements.txt app.py wenying_bridge.py run_wenying.bat run_wenying_legacy.bat
+git add requirements.txt wenying_bridge.py run_wenying.bat
 git add wechat_template_learning_prd.md src electron wenying
 git add data/wenying.ico data/wenying-icon.png data/wenying-icon-source.png
 git add data/wenying-shanshui-v1.png data/wenying-shanshui-v2.png data/wenying-shanshui-v3.png
