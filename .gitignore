@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Electron / Node
+node_modules/
+dist/
+release/
+*.tsbuildinfo
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Secrets and local runtime state
+.env
+.env.*
+data/settings.json
+data/wenying_error.log
+data/template_browser_capture.json
+data/templates/
+
+# Generated output and user samples
+output/
+新建文件夹/
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+%USERPROFILE%/
