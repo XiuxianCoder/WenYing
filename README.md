@@ -16,6 +16,14 @@
   <img alt="Status" src="https://img.shields.io/badge/Status-Active-2F6B5F">
 </p>
 
+<p align="center">
+  <img src="docs/images/wenying-workbench.png" width="100%" alt="文映 WenYing 水墨风桌面工作台">
+</p>
+
+<p align="center">
+  <sub>水墨工作台 · Word 与 AI 双原稿入口 · 文章实时预览</sub>
+</p>
+
 ---
 
 文映将“准备原稿、设计排版、适配编辑器、发布公众号”整合到一个本地桌面工作流中。你可以导入已有 Word 与配套图片，也可以让 AI 联网检索资料并撰写新文章；随后使用 AI 原创设计或参考公众号模板生成 HTML，最后预览、导出或发送到微信公众号。
@@ -208,6 +216,8 @@ npm run dev
 | `data/wenying_error.log` | 本地运行错误日志 |
 | `output/` | 默认 HTML、图片与预览输出；可在设置中更改 |
 
+仓库不会提供 `settings.json`。首次启动时应用直接使用代码内置的安全默认值，因此该文件不存在不会影响界面启动、Word 导入和本地预览；当用户在“应用设置”中第一次点击保存后，应用会自动创建并写入配置文件。源码运行时文件位于项目的 `data/settings.json`，安装版则保存在 Electron 用户数据目录中，不会写进安装目录。
+
 自动预览文件采用以下命名：
 
 ```text
@@ -284,7 +294,13 @@ npm run build:web
 ```powershell
 git init
 git branch -M main
-git add .
+git add .gitignore README.md README_EN.md
+git add package.json package-lock.json index.html tsconfig.json vite.config.ts
+git add requirements.txt app.py wenying_bridge.py run_wenying.bat run_wenying_legacy.bat
+git add wechat_template_learning_prd.md src electron wenying
+git add data/wenying.ico data/wenying-icon.png data/wenying-icon-source.png
+git add data/wenying-shanshui-v1.png data/wenying-shanshui-v2.png data/wenying-shanshui-v3.png
+git add docs/images/wenying-workbench.png
 git status
 git commit -m "feat: publish WenYing desktop"
 git remote add origin https://github.com/<你的用户名>/WenYing.git
@@ -301,7 +317,11 @@ git push -u origin main
 ### 后续更新
 
 ```powershell
-git add .
+git add README.md README_EN.md src electron wenying wenying_bridge.py
+git add package.json package-lock.json requirements.txt
+git add data/wenying.ico data/wenying-icon.png data/wenying-icon-source.png
+git add data/wenying-shanshui-v1.png data/wenying-shanshui-v2.png data/wenying-shanshui-v3.png
+git add docs/images/wenying-workbench.png
 git status
 git commit -m "feat: improve WenYing"
 git push
