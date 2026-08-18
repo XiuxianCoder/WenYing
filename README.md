@@ -1,18 +1,19 @@
 <p align="center">
-  <img src="data/wenying-icon.png" width="96" alt="文映 WenYing 图标">
+  <img src="data/wenying-icon.png" width="88" alt="文映 WenYing 图标">
 </p>
 
 <h1 align="center">文映 WenYing</h1>
 
 <p align="center">
-  面向 Windows 的 AI 图文写作、微信公众号排版与发布工具
+  让内容先站稳，再谈风格<br>
+  面向 Windows 的 AI 图文写作、公众号排版与发布工作台
 </p>
 
 <p align="center">
-  <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
   <img alt="Windows" src="https://img.shields.io/badge/Platform-Windows-0078D4?logo=windows&logoColor=white">
   <img alt="Electron" src="https://img.shields.io/badge/Desktop-Electron-47848F?logo=electron&logoColor=white">
   <img alt="React" src="https://img.shields.io/badge/UI-React-149ECA?logo=react&logoColor=white">
+  <img alt="Python" src="https://img.shields.io/badge/Engine-Python-3776AB?logo=python&logoColor=white">
   <img alt="Status" src="https://img.shields.io/badge/Status-Active-2F6B5F">
 </p>
 
@@ -20,131 +21,76 @@
   <img src="docs/images/wenying-workbench.png" width="100%" alt="文映 WenYing 水墨风桌面工作台">
 </p>
 
-<p align="center">
-  <sub>水墨工作台 · Word 与 AI 双原稿入口 · 文章实时预览</sub>
-</p>
+文映把一篇公众号文章从原稿到发布所需的环节集中到同一个桌面工作流中：导入 Word 与图片，或者让 AI 搜索公开资料并撰写原稿；随后使用 AI 原创设计或参考已有文章进行模板仿排，最后生成适合浏览器、135、秀米或微信公众号的 HTML。
 
----
+应用采用水墨山水视觉语言，界面与生成文章彼此独立。工作台背景不会写进最终内容，文章始终按照你选择的风格单独设计。
 
-文映将“准备原稿、设计排版、适配编辑器、发布公众号”整合到一个本地桌面工作流中。你可以导入已有 Word 与配套图片，也可以让 AI 联网检索资料并撰写新文章；随后使用 AI 原创设计或参考公众号模板生成 HTML，最后预览、导出或发送到微信公众号。
+> 默认情况下，AI 只参与版式设计，不修改原文。只有主动开启“AI 优化正文”后，模型才会润色文字。
 
-新版桌面端采用 **Electron + React + TypeScript**，并通过受控 IPC 调用现有 Python 内容引擎。界面与业务逻辑相互隔离，既保留已经稳定的 Word、AI、模板和微信发布能力，也获得更现代的布局、实时预览和桌面交互。
+## 核心能力
 
-新版工作台使用宣纸、淡墨、远山、飞鸟、柳影与朱砂色构成视觉语言。左侧负责切换工作阶段，中间完成当前操作，右侧始终保留文章实时预览；内容可以滚动，背景和预览区域保持稳定，不再因为滚动条或弹窗改变布局宽度。
+### 两种原稿入口
 
-> 文映是本地优先工具，但不是完全离线工具。只有在使用 AI、联网写作、网页模板采集或微信发布时才会访问网络。调用 AI 时，相关文字或图片会发送给你配置的模型服务商。
-
-## 为什么使用文映
-
-| 需求 | 文映的处理方式 |
-| --- | --- |
-| 已经写好 Word，只想快速排版 | 保留文字与图片，AI 只负责设计版式；正文润色默认关闭 |
-| 只有主题，还没有文章 | 搜索公开资料，按文章类型、篇幅和侧重点生成可继续编辑的原稿 |
-| 喜欢某篇公众号的视觉风格 | 采集链接或截图，保存为本地模板后反复使用 |
-| 想做更自由的视觉效果 | 生成适合浏览器展示的完整 HTML，同时提供 135、秀米和微信适配版本 |
-| 不想每次重新生成再发布 | 直接选择已有 HTML，预览后保存到草稿箱、发布或群发 |
-
-文映适合公众号运营、内容编辑、活动策划、技术作者，以及希望把“写作—排版—发布”集中到一处的个人和小团队。
-
-## 新版工作台
-
-| 工作区 | 用途 |
-| --- | --- |
-| 创建原稿 | 导入 Word 与图片，或使用 AI 联网检索并写作 |
-| 视觉设计 | 选择原创风格、随机种子和正文优化策略 |
-| 模板库 | 采集、学习、保存、复用和删除公众号排版模板 |
-| 输出发布 | 生成自由网页、135、秀米、微信正文，并发布到公众号 |
-| 应用设置 | 配置模型、输出目录、界面字体和微信公众号接口 |
-
-界面中的水墨山水仅作为桌面端氛围层，不会写入文章内容；生成的 HTML 会按照所选风格独立设计。随机种子只参与内部版式变化，不会显示在最终文章中。
-
-## 功能亮点
-
-### 两种原稿来源
-
-- **已有文章排版**：解析 `.docx` 中的标题、段落、图片与表格，并可补充 Word 外部的配套图片。
-- **AI 联网写作**：围绕主题搜索公开资料，按文章类型、目标篇幅、侧重点和自由要求生成新原稿。
-- 支持技术教程、代码实战、行业分析、资讯综述、活动推文等文章类型。
-- AI 代码内容以独立代码块保存并渲染，保留缩进与换行。
+- **导入已有 Word**：读取标题、段落、表格与文档内图片，并可继续添加 Word 外部的配套图片。
+- **AI 联网写作**：输入主题、关键词、文章类型、目标篇幅和侧重点，检索公开资料后生成一篇可继续编辑的原稿。
 
 ### 两种排版方式
 
-- **AI 原创排版**：多种视觉风格、随机种子、可选正文润色；默认严格保留原文。
-- **模板仿排**：通过公众号文章链接、内嵌浏览器采集或截图学习排版，模板可保存、复用和删除。
-- 支持标题、正文卡片、分隔线、固定页眉页脚、图片布局和动态网页装饰。
+- **AI 原创排版**：提供多种视觉风格和随机种子，同一份内容可以生成不同设计方案。
+- **模板仿排**：通过公众号文章链接或页面截图学习颜色、标题层级、正文卡片、分隔线、固定页眉页脚与图片布局；模板可保存、复用和删除。
 
 ### 多目标 HTML 输出
 
-- 自由网页 HTML
-- 135 编辑器代码
-- 秀米兼容代码
-- 微信公众号正文
-- 输出目录可配置，文件自动按文章标题命名。
-- 可直接选择以前生成的 HTML 发布，无需重新调用 AI。
+| 输出目标 | 适用场景 |
+| --- | --- |
+| 自由网页 HTML | 浏览器展示，保留渐变、SVG、复杂背景和轻动画 |
+| 135 编辑器代码 | 复制后继续在 135 编辑器中调整 |
+| 秀米兼容代码 | 清理部分不兼容网页样式后导入秀米 |
+| 微信公众号正文 | 按微信公众号更严格的 HTML/CSS 规则适配 |
+
+输出目录可以在设置中修改，生成文件会自动使用文章标题命名。以前生成的 HTML 也可以直接选择并进入发布流程，无需再次调用 AI。
 
 ### 微信公众号发布
 
-- 本地预览微信兼容版草稿。
-- 上传正文图片并自动替换为微信素材 URL。
+- 生成并打开公众号草稿预览。
+- 自动上传正文图片并替换为微信素材地址。
 - 保存到公众号草稿箱。
-- 在账号具备权限时直接发布，或群发给全部关注用户。
-- 发布与群发均有独立入口和高风险二次确认。
+- 在账号具备权限时继续正式发布或群发。
 
-## 工作流
+建议始终先进入草稿箱检查手机端显示效果，再执行正式发布或群发。
+
+## 使用流程
 
 ```mermaid
 flowchart LR
     A["导入 Word + 图片"] --> C["形成原稿"]
-    B["AI 联网检索并写作"] --> C
+    B["AI 联网写作"] --> C
     C --> D["AI 原创排版"]
     C --> E["模板仿排"]
-    D --> F["HTML 预览与适配"]
+    D --> F["预览与多目标适配"]
     E --> F
     G["选择已有 HTML"] --> H["公众号草稿预览"]
     F --> H
-    H --> I["保存草稿 / 直接发布 / 群发"]
+    H --> I["保存草稿 / 发布 / 群发"]
 ```
 
-## 技术架构
+## 快速开始
 
-```mermaid
-flowchart LR
-    UI["React + TypeScript<br>桌面界面与实时预览"] --> IPC["Electron Preload<br>受控 IPC"]
-    IPC --> MAIN["Electron 主进程<br>窗口、文件、剪贴板、单实例"]
-    MAIN --> PY["Python 常驻引擎<br>Word、AI、模板、渲染、微信发布"]
-```
-
-- React 渲染进程不直接访问 Node.js、文件系统或 Python。
-- Electron 主进程统一处理原生窗口、文件对话框、路径与剪贴板。
-- `wenying_bridge.py` 使用 JSON Lines 与 Electron 通信，并复用 `wenying/` 下的稳定功能模块。
-
-## 环境要求
+### 环境要求
 
 - Windows 10 或 Windows 11
 - Node.js 22.12 或更高版本
 - Python 3.10 或更高版本
-- 一个 OpenAI Chat Completions 兼容的模型 API
-- 模板图片理解与智能配图需要支持图片输入的多模态模型
-- 微信发布功能需要公众号 AppID、AppSecret、IP 白名单及相应接口权限
+- 一个兼容 OpenAI Chat Completions 接口的模型服务
 
-一个能力完整的多模态模型即可覆盖当前 AI 功能。
+图片理解、模板学习和智能配图需要模型支持多模态输入。一个能力完整的多模态模型即可覆盖当前 AI 功能。
 
-## 快速开始
-
-### 1. 获取项目
-
-在 GitHub 页面选择 **Code → Download ZIP**，或复制仓库地址后克隆：
+### 获取并安装
 
 ```powershell
-git clone <repository-url>
+git clone https://github.com/XiuxianCoder/WenYing.git
 cd WenYing
-```
 
-将 `<repository-url>` 替换为 GitHub 页面中显示的 HTTPS 或 SSH 地址。
-
-### 2. 安装 Python 与 Electron 依赖
-
-```powershell
 py -3.10 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
@@ -152,114 +98,96 @@ python -m pip install -r requirements.txt
 npm ci
 ```
 
-若 PowerShell 阻止激活脚本，可以直接使用：
+如果 PowerShell 不允许激活虚拟环境，可以直接使用：
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 npm ci
 ```
 
-### 3. 启动应用
+### 启动应用
 
-双击：
+双击 `run_wenying.bat`，或者在项目目录执行：
 
-```text
-run_wenying.bat
+```powershell
+npm run build:web
+npm run start
 ```
 
-双击脚本会启动新版 Electron 桌面端。开发模式可以运行：
+开发模式：
 
 ```powershell
 npm run dev
 ```
 
-## 配置模型
+> 当前源码版本仍需要本机 Python 环境。Electron 安装目录中包含内容引擎源码，但尚未内置独立 Python 运行时。
 
-点击左下角“应用设置”，在“多模态模型”区域填写：
+## 应用配置
+
+点击左下角的“应用设置”即可完成所有本机配置。
+
+### 多模态模型
 
 | 配置项 | 说明 |
 | --- | --- |
-| 模型 API 服务地址 | OpenAI 兼容 Base URL，例如 `https://api.openai.com/v1` |
+| API 服务地址 | OpenAI 兼容 Base URL，例如 `https://api.openai.com/v1` |
 | 模型名称 | 服务商提供的模型 ID |
 | API Key | 模型服务密钥 |
-| HTML 输出目录 | 自动预览与导出的默认保存目录 |
-| 界面字体 | 华文行楷（默认）或楷体，保存后立即生效 |
+| HTML 输出目录 | 自动预览与导出文件的默认保存位置 |
+| 界面字体 | 华文行楷、楷体或微软雅黑，保存后立即生效 |
 
-模型最好同时支持：文本理解、图片输入、较长上下文和 JSON 结构化输出。
+### 微信公众号
 
-## 配置微信公众号
+1. 登录[微信公众平台](https://mp.weixin.qq.com/)。
+2. 在“设置与开发 → 基本配置”或“开发接口管理”中获取 AppID 与 AppSecret。
+3. 将运行文映电脑的公网出口 IPv4 加入公众号 IP 白名单。
+4. 在文映中填写 AppID、AppSecret 和默认作者并保存。
+5. 首次使用先测试连接，再发布到草稿箱预览。
 
-1. 登录 [微信公众平台](https://mp.weixin.qq.com/)。
-2. 进入“设置与开发 → 基本配置”或“开发接口管理”。
-3. 获取公众号 **AppID** 与 **AppSecret**。
-4. 将运行文映电脑或服务器的公网出口 IPv4 加入 **IP 白名单**。
-5. 在文映左下角“应用设置”的“微信公众号接口”区域填写 AppID、AppSecret 和默认作者。
-6. 首次使用建议先选择“预览微信草稿”，再保存到草稿箱检查。
+如果出现 `40164 invalid ip, not in whitelist`，请核对错误信息中的出口 IP，而不是只查看电脑局域网地址。使用 VPN、代理或动态公网网络时，出口 IP 可能发生变化。
 
-常见错误：
+## 数据与隐私
 
-- `40164 invalid ip, not in whitelist`：当前公网出口 IP 未加入公众号 IP 白名单。
-- 获取不到 `access_token`：检查 AppID、AppSecret、账号类型、开发接口状态和白名单。
-- 无权直接发布或群发：公众号认证类型或接口权限不满足要求。
+文映采用本地优先设计：Word 解析、图片管理、模板存储和 HTML 渲染在本机完成。使用 AI、联网写作、网页模板学习或微信公众号接口时，相关内容才会发送到对应服务。
 
-> AppSecret 是高敏感凭证。不要截图、分享或提交到 GitHub。重置 AppSecret 后，旧密钥会立即失效。
-
-## 输出与数据目录
-
-| 路径 | 内容 |
+| 本地路径 | 内容 |
 | --- | --- |
-| `data/settings.json` | 本机模型与公众号配置，包含敏感密钥，已被 `.gitignore` 忽略 |
-| `data/templates/` | 本地学习与生成的模板 |
-| `data/wenying_error.log` | 本地运行错误日志 |
-| `output/` | 默认 HTML、图片与预览输出；可在设置中更改 |
+| `data/settings.json` | 模型与公众号配置，可能包含 API Key 和 AppSecret |
+| `data/templates/` | 已保存的本地模板 |
+| `data/wenying_error.log` | 本地错误日志 |
+| `output/` | 默认 HTML、图片与预览输出 |
 
-仓库不会提供 `settings.json`。首次启动时应用直接使用代码内置的安全默认值，因此该文件不存在不会影响界面启动、Word 导入和本地预览；当用户在“应用设置”中第一次点击保存后，应用会自动创建并写入配置文件。源码运行时文件位于项目的 `data/settings.json`，安装版则保存在 Electron 用户数据目录中，不会写进安装目录。
+仓库不会提供 `settings.json`。首次启动时应用使用代码内置默认值；用户第一次保存设置后，文件才会自动创建。上述设置、模板、日志和输出目录均已被 `.gitignore` 排除。
 
-自动预览文件采用以下命名：
+请不要把 API Key、AppSecret、Access Token、客户素材、私人文章或未获授权的公众号资源提交到公开仓库。
 
-```text
-文章标题_预览.html
-文章标题_公众号草稿预览.html
+## 技术架构
+
+```mermaid
+flowchart LR
+    UI["React + TypeScript<br>桌面界面与实时预览"] --> IPC["Electron Preload<br>受控 IPC"]
+    IPC --> MAIN["Electron 主进程<br>窗口、文件、剪贴板、单实例"]
+    MAIN --> PY["Python 内容引擎<br>Word、AI、模板、渲染、微信发布"]
 ```
 
-## 微信 HTML 兼容性
-
-自由网页 HTML 可以使用渐变、SVG、卡片、复杂背景和轻动画。公众号、135 和秀米对 HTML/CSS 的支持更严格，文映会生成适配版本并移除不兼容的脚本、动画、定位和部分高级 CSS。
-
-因此：
-
-- 浏览器中的自由网页版本通常视觉效果最完整。
-- 公众号适配版会优先保证内容、图片和核心样式稳定。
-- 最终发布前应始终使用草稿预览并在公众号后台检查。
-
-## 安全与隐私
-
-- Word 解析、图片管理、模板存储和 HTML 渲染在本机完成。
-- AI 功能会把必要的文本、页面摘要或图片发送给所配置的模型服务商。
-- 联网写作会访问公开搜索结果和网页资料，生成事实仍需人工核验。
-- API Key 与 AppSecret 当前以本机 JSON 文件保存，并非系统密钥链加密存储。
-- `.gitignore` 默认排除设置、日志、采集缓存、输出文件和用户样稿；提交前仍建议执行 `git status` 检查。
+- 渲染进程不直接访问 Node.js、文件系统或 Python。
+- Electron 主进程处理原生窗口、文件对话框、路径和剪贴板。
+- `wenying_bridge.py` 通过 JSON Lines 与 Electron 通信。
+- `wenying/` 只保留当前内容引擎实际使用的模块。
 
 ## 项目结构
 
 ```text
 WenYing/
 ├─ electron/                 # Electron 主进程、Preload 与 Python 客户端
-├─ src/                      # React + TypeScript 新界面
-├─ index.html                # Vite 页面入口
-├─ package.json              # Electron/React 依赖与构建脚本
+├─ src/                      # React + TypeScript 桌面界面
 ├─ wenying_bridge.py         # Electron 与 Python 的常驻通信引擎
-├─ run_wenying.bat           # 新版 Electron 启动脚本
+├─ wenying/                  # Word、AI、模板、渲染与微信发布模块
+├─ data/                     # 应用图标与界面视觉资源
+├─ docs/                     # 项目图片与发布文档
 ├─ requirements.txt          # Python 依赖
-├─ wenying/
-│  ├─ docx_parser.py         # Word 解析
-│  ├─ research_writer.py     # 联网检索与 AI 写作
-│  ├─ learning_v2.py         # 模板学习与原创排版
-│  ├─ renderer_v3.py         # HTML 渲染
-│  ├─ wechat_adapter.py      # 135 / 秀米 / 公众号适配
-│  └─ wechat_publisher.py    # 微信素材、草稿、发布与群发接口
-├─ data/                     # 图标和本机运行数据
-└─ output/                   # 默认输出目录
+├─ package.json              # Electron/React 依赖与构建脚本
+└─ run_wenying.bat           # Windows 启动脚本
 ```
 
 ## 开发检查
@@ -270,100 +198,24 @@ npm run typecheck
 npm run build:web
 ```
 
-提交前请至少验证：
+提交功能修改前，建议至少验证 Word 与外部图片导入、AI 联网写作、两种排版方式、四类 HTML 输出，以及公众号草稿预览。
 
-- Word 与外部图片导入
-- AI 联网写作与代码块
-- AI 原创排版和模板仿排
-- 四种 HTML 输出目标
-- 已有 HTML 直接发布
-- 微信草稿预览和草稿箱上传
+## 当前限制
 
-## 发布到 GitHub
+- 微信、135 和秀米可能继续清理部分 CSS，适配版不会与自由网页版本完全一致。
+- 公众号文章页面可能限制采集，模板复刻效果取决于可获取内容和模型能力。
+- AI 联网写作生成的事实、日期和引用仍需人工核验。
+- 直接发布与群发取决于公众号认证状态、接口权限和额度。
 
-### 首次发布源码
+## 参与项目
 
-先在 GitHub 创建一个空仓库，例如 `WenYing`。不要勾选自动生成 README、`.gitignore` 或 License，然后在项目根目录执行：
+欢迎提交 Issue 和 Pull Request。反馈问题时，请尽量提供复现步骤、预期结果、实际结果、错误日志和已经脱敏的截图。
 
-```powershell
-git init
-git branch -M main
-git add .gitignore README.md README_EN.md
-git add package.json package-lock.json index.html tsconfig.json vite.config.ts
-git add requirements.txt wenying_bridge.py run_wenying.bat
-git add wechat_template_learning_prd.md src electron wenying
-git add data/wenying.ico data/wenying-icon.png data/wenying-icon-source.png
-git add data/wenying-shanshui-v1.png data/wenying-shanshui-v2.png data/wenying-shanshui-v3.png
-git add docs/images/wenying-workbench.png
-git status
-git commit -m "feat: publish WenYing desktop"
-git remote add origin https://github.com/<你的用户名>/WenYing.git
-git push -u origin main
-```
-
-将 `<你的用户名>` 替换为自己的 GitHub 用户名。如果仓库已经配置过 `origin`，使用：
-
-```powershell
-git remote set-url origin https://github.com/<你的用户名>/WenYing.git
-git push -u origin main
-```
-
-### 后续更新
-
-```powershell
-git add README.md README_EN.md src electron wenying wenying_bridge.py
-git add package.json package-lock.json requirements.txt
-git add data/wenying.ico data/wenying-icon.png data/wenying-icon-source.png
-git add data/wenying-shanshui-v1.png data/wenying-shanshui-v2.png data/wenying-shanshui-v3.png
-git add docs/images/wenying-workbench.png
-git status
-git commit -m "feat: improve WenYing"
-git push
-```
-
-### 创建版本标签
-
-```powershell
-git tag -a v0.2.0 -m "WenYing v0.2.0"
-git push origin v0.2.0
-```
-
-标签推送完成后，可以在 GitHub 的 **Releases → Draft a new release** 中选择 `v0.2.0`，填写更新说明并发布源码版本。
-
-> 当前桌面端仍需要本机 Python 环境与依赖。若要发布可在其他 Windows 电脑直接安装运行的安装包，还需要先把 Python 解释器和依赖打包为应用 sidecar；不要把目前的 Electron 目录包误标为完全独立安装版。
-
-### 公开仓库前检查
-
-```powershell
-git status --short
-git status --ignored
-git diff --cached --name-only
-```
-
-确认以下内容没有进入待提交列表：
-
-- `data/settings.json`
-- API Key、AppSecret、Access Token
-- `data/templates/` 与浏览器采集缓存
-- `output/` 中生成的文章和图片
-- 测试 Word、客户素材、二维码及其他未获授权文件
-
-项目已经通过 `.gitignore` 排除上述常见本地数据，但首次公开前仍应人工核对一次 `git status`。
-
-## 已知限制
-
-- 微信、135、秀米可能继续清理部分 CSS，效果不会与自由网页完全一致。
-- 公众号文章页面可能限制抓取，模板复刻效果受采集数据和模型能力影响。
-- 动态公网 IP 变化后，需要同步更新公众号 IP 白名单。
-- 直接发布和群发取决于公众号的认证状态、接口权限与额度；请谨慎测试。
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request。提交问题时请提供：复现步骤、预期结果、实际结果、错误日志，以及已脱敏的截图。请勿上传 API Key、AppSecret、真实用户数据或未获授权的公众号素材。
+请勿在 Issue 中公开 API Key、AppSecret、真实用户数据或未获授权的公众号素材。
 
 ---
 
 <p align="center">
-  如果文映让你少在 Word、浏览器和公众号后台之间来回折腾，<br>
-  欢迎点亮右上角的 <strong>Star ⭐</strong>。你的支持会让这个项目继续变得更稳定、更好用。
+  如果文映让你少在 Word、浏览器和公众号后台之间来回切换，<br>
+  欢迎点亮右上角的 <strong>Star ⭐</strong>。
 </p>
